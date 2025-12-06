@@ -1,0 +1,1326 @@
+
+discomfort_index_meas_App_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000059a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  0000059a  0000062e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800064  00800064  00000632  2**0
+                  ALLOC
+  3 .stab         00000024  00000000  00000000  00000634  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      0000001e  00000000  00000000  00000658  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      00000030  00000000  00000000  00000676  2**0
+                  CONTENTS, READONLY
+  6 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006a8  2**2
+                  CONTENTS, READONLY
+  7 .debug_aranges 000000b0  00000000  00000000  000006e8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_info   000013b0  00000000  00000000  00000798  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_abbrev 0000098a  00000000  00000000  00001b48  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_line   00000970  00000000  00000000  000024d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_frame  00000198  00000000  00000000  00002e44  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_str    000005cc  00000000  00000000  00002fdc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_loc    00000897  00000000  00000000  000035a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_ranges 00000078  00000000  00000000  00003e3f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0e c0       	rjmp	.+28     	; 0x1e <__ctors_end>
+   2:	28 c0       	rjmp	.+80     	; 0x54 <__bad_interrupt>
+   4:	27 c0       	rjmp	.+78     	; 0x54 <__bad_interrupt>
+   6:	26 c0       	rjmp	.+76     	; 0x54 <__bad_interrupt>
+   8:	25 c0       	rjmp	.+74     	; 0x54 <__bad_interrupt>
+   a:	45 c1       	rjmp	.+650    	; 0x296 <__vector_5>
+   c:	23 c0       	rjmp	.+70     	; 0x54 <__bad_interrupt>
+   e:	22 c0       	rjmp	.+68     	; 0x54 <__bad_interrupt>
+  10:	21 c0       	rjmp	.+66     	; 0x54 <__bad_interrupt>
+  12:	20 c0       	rjmp	.+64     	; 0x54 <__bad_interrupt>
+  14:	1f c0       	rjmp	.+62     	; 0x54 <__bad_interrupt>
+  16:	1e c0       	rjmp	.+60     	; 0x54 <__bad_interrupt>
+  18:	1d c0       	rjmp	.+58     	; 0x54 <__bad_interrupt>
+  1a:	1c c0       	rjmp	.+56     	; 0x54 <__bad_interrupt>
+  1c:	1b c0       	rjmp	.+54     	; 0x54 <__bad_interrupt>
+
+0000001e <__ctors_end>:
+  1e:	11 24       	eor	r1, r1
+  20:	1f be       	out	0x3f, r1	; 63
+  22:	cf e5       	ldi	r28, 0x5F	; 95
+  24:	d2 e0       	ldi	r29, 0x02	; 2
+  26:	de bf       	out	0x3e, r29	; 62
+  28:	cd bf       	out	0x3d, r28	; 61
+
+0000002a <__do_copy_data>:
+  2a:	10 e0       	ldi	r17, 0x00	; 0
+  2c:	a0 e6       	ldi	r26, 0x60	; 96
+  2e:	b0 e0       	ldi	r27, 0x00	; 0
+  30:	ea e9       	ldi	r30, 0x9A	; 154
+  32:	f5 e0       	ldi	r31, 0x05	; 5
+  34:	02 c0       	rjmp	.+4      	; 0x3a <__do_copy_data+0x10>
+  36:	05 90       	lpm	r0, Z+
+  38:	0d 92       	st	X+, r0
+  3a:	a4 36       	cpi	r26, 0x64	; 100
+  3c:	b1 07       	cpc	r27, r17
+  3e:	d9 f7       	brne	.-10     	; 0x36 <__do_copy_data+0xc>
+
+00000040 <__do_clear_bss>:
+  40:	20 e0       	ldi	r18, 0x00	; 0
+  42:	a4 e6       	ldi	r26, 0x64	; 100
+  44:	b0 e0       	ldi	r27, 0x00	; 0
+  46:	01 c0       	rjmp	.+2      	; 0x4a <.do_clear_bss_start>
+
+00000048 <.do_clear_bss_loop>:
+  48:	1d 92       	st	X+, r1
+
+0000004a <.do_clear_bss_start>:
+  4a:	a6 36       	cpi	r26, 0x66	; 102
+  4c:	b2 07       	cpc	r27, r18
+  4e:	e1 f7       	brne	.-8      	; 0x48 <.do_clear_bss_loop>
+  50:	fb d1       	rcall	.+1014   	; 0x448 <main>
+  52:	a1 c2       	rjmp	.+1346   	; 0x596 <_exit>
+
+00000054 <__bad_interrupt>:
+  54:	d5 cf       	rjmp	.-86     	; 0x0 <__vectors>
+
+00000056 <i2c_delay_T2>:
+;	rjmp 1f      ; 2   "
+;1:	rjmp 2f      ; 2   "
+;2:	rjmp 3f      ; 2   "
+;3:	rjmp 4f      ; 2   "
+;4:	
+	rjmp 5f      ; 2   "
+  56:	00 c0       	rjmp	.+0      	; 0x58 <i2c_delay_T2+0x2>
+5: 	rjmp 6f      ; 2   "
+  58:	00 c0       	rjmp	.+0      	; 0x5a <i2c_delay_T2+0x4>
+6:	nop          ; 1   "
+  5a:	00 00       	nop
+	ret          ; 4   "  total 20 cyles = 5.0 microsec with 4 Mhz crystal 
+  5c:	08 95       	ret
+
+0000005e <i2c_init>:
+; extern void i2c_init(void)
+;*************************************************************************
+	.global i2c_init
+	.func i2c_init
+i2c_init:
+	cbi SDA_DDR,SDA		;release SDA
+  5e:	bc 98       	cbi	0x17, 4	; 23
+	cbi SCL_DDR,SCL		;release SCL
+  60:	bb 98       	cbi	0x17, 3	; 23
+	cbi SDA_OUT,SDA
+  62:	c4 98       	cbi	0x18, 4	; 24
+	cbi SCL_OUT,SCL
+  64:	c3 98       	cbi	0x18, 3	; 24
+	ret
+  66:	08 95       	ret
+
+00000068 <i2c_start>:
+;*************************************************************************
+
+	.global i2c_start
+	.func   i2c_start
+i2c_start:
+	sbi 	SDA_DDR,SDA	;force SDA low
+  68:	bc 9a       	sbi	0x17, 4	; 23
+	rcall 	i2c_delay_T2	;delay T/2
+  6a:	f5 df       	rcall	.-22     	; 0x56 <i2c_delay_T2>
+	
+	rcall 	i2c_write	;write address
+  6c:	13 d0       	rcall	.+38     	; 0x94 <i2c_write>
+	ret
+  6e:	08 95       	ret
+
+00000070 <i2c_rep_start>:
+;*************************************************************************
+
+	.global i2c_rep_start
+	.func	i2c_rep_start
+i2c_rep_start:
+	sbi	SCL_DDR,SCL	;force SCL low
+  70:	bb 9a       	sbi	0x17, 3	; 23
+	rcall 	i2c_delay_T2	;delay  T/2
+  72:	f1 df       	rcall	.-30     	; 0x56 <i2c_delay_T2>
+	cbi	SDA_DDR,SDA	;release SDA
+  74:	bc 98       	cbi	0x17, 4	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  76:	ef df       	rcall	.-34     	; 0x56 <i2c_delay_T2>
+	cbi	SCL_DDR,SCL	;release SCL
+  78:	bb 98       	cbi	0x17, 3	; 23
+	rcall 	i2c_delay_T2	;delay  T/2
+  7a:	ed df       	rcall	.-38     	; 0x56 <i2c_delay_T2>
+	sbi 	SDA_DDR,SDA	;force SDA low
+  7c:	bc 9a       	sbi	0x17, 4	; 23
+	rcall 	i2c_delay_T2	;delay	T/2
+  7e:	eb df       	rcall	.-42     	; 0x56 <i2c_delay_T2>
+	
+	rcall	i2c_write	;write address
+  80:	09 d0       	rcall	.+18     	; 0x94 <i2c_write>
+	ret
+  82:	08 95       	ret
+
+00000084 <i2c_stop>:
+;*************************************************************************
+
+	.global	i2c_stop
+	.func	i2c_stop
+i2c_stop:
+	sbi	SCL_DDR,SCL	;force SCL low
+  84:	bb 9a       	sbi	0x17, 3	; 23
+	sbi	SDA_DDR,SDA	;force SDA low
+  86:	bc 9a       	sbi	0x17, 4	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  88:	e6 df       	rcall	.-52     	; 0x56 <i2c_delay_T2>
+	cbi	SCL_DDR,SCL	;release SCL
+  8a:	bb 98       	cbi	0x17, 3	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  8c:	e4 df       	rcall	.-56     	; 0x56 <i2c_delay_T2>
+	cbi	SDA_DDR,SDA	;release SDA
+  8e:	bc 98       	cbi	0x17, 4	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  90:	e2 df       	rcall	.-60     	; 0x56 <i2c_delay_T2>
+	ret
+  92:	08 95       	ret
+
+00000094 <i2c_write>:
+;	data = r24,  return = r25(=0):r24
+;*************************************************************************
+	.global i2c_write
+	.func	i2c_write
+i2c_write:
+	sec			;set carry flag
+  94:	08 94       	sec
+	rol 	r24		;shift in carry and out bit one
+  96:	88 1f       	adc	r24, r24
+	rjmp	i2c_write_first
+  98:	01 c0       	rjmp	.+2      	; 0x9c <i2c_write_first>
+
+0000009a <i2c_write_bit>:
+i2c_write_bit:
+	lsl	r24		;if transmit register empty
+  9a:	88 0f       	add	r24, r24
+
+0000009c <i2c_write_first>:
+i2c_write_first:
+	breq	i2c_get_ack
+  9c:	59 f0       	breq	.+22     	; 0xb4 <i2c_get_ack>
+	sbi	SCL_DDR,SCL	;force SCL low
+  9e:	bb 9a       	sbi	0x17, 3	; 23
+	brcc	i2c_write_low
+  a0:	18 f4       	brcc	.+6      	; 0xa8 <i2c_write_low>
+	nop
+  a2:	00 00       	nop
+	cbi	SDA_DDR,SDA	;release SDA
+  a4:	bc 98       	cbi	0x17, 4	; 23
+	rjmp	i2c_write_high
+  a6:	02 c0       	rjmp	.+4      	; 0xac <i2c_write_high>
+
+000000a8 <i2c_write_low>:
+i2c_write_low:
+	sbi	SDA_DDR,SDA	;force SDA low
+  a8:	bc 9a       	sbi	0x17, 4	; 23
+	rjmp	i2c_write_high
+  aa:	00 c0       	rjmp	.+0      	; 0xac <i2c_write_high>
+
+000000ac <i2c_write_high>:
+i2c_write_high:
+	rcall 	i2c_delay_T2	;delay T/2
+  ac:	d4 df       	rcall	.-88     	; 0x56 <i2c_delay_T2>
+	cbi	SCL_DDR,SCL	;release SCL
+  ae:	bb 98       	cbi	0x17, 3	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  b0:	d2 df       	rcall	.-92     	; 0x56 <i2c_delay_T2>
+	rjmp	i2c_write_bit
+  b2:	f3 cf       	rjmp	.-26     	; 0x9a <i2c_write_bit>
+
+000000b4 <i2c_get_ack>:
+	
+i2c_get_ack:
+	sbi	SCL_DDR,SCL	;force SCL low
+  b4:	bb 9a       	sbi	0x17, 3	; 23
+	cbi	SDA_DDR,SDA	;release SDA
+  b6:	bc 98       	cbi	0x17, 4	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  b8:	ce df       	rcall	.-100    	; 0x56 <i2c_delay_T2>
+	cbi	SCL_DDR,SCL	;release SCL
+  ba:	bb 98       	cbi	0x17, 3	; 23
+
+000000bc <i2c_ack_wait>:
+i2c_ack_wait:
+	sbis	SCL_IN,SCL	;wait SCL high (in case wait states are inserted)
+  bc:	b3 9b       	sbis	0x16, 3	; 22
+	rjmp	i2c_ack_wait
+  be:	fe cf       	rjmp	.-4      	; 0xbc <i2c_ack_wait>
+	
+	clr	r24		;return 0
+  c0:	88 27       	eor	r24, r24
+	sbic	SDA_IN,SDA	;if SDA high -> return 1
+  c2:	b4 99       	sbic	0x16, 4	; 22
+	ldi	r24,1
+  c4:	81 e0       	ldi	r24, 0x01	; 1
+	rcall	i2c_delay_T2	;delay T/2
+  c6:	c7 df       	rcall	.-114    	; 0x56 <i2c_delay_T2>
+	clr	r25
+  c8:	99 27       	eor	r25, r25
+	ret
+  ca:	08 95       	ret
+
+000000cc <i2c_readNak>:
+	.global i2c_readAck
+	.global i2c_readNak
+	.global i2c_read		
+	.func	i2c_read
+i2c_readNak:
+	clr	r24
+  cc:	88 27       	eor	r24, r24
+	rjmp	i2c_read
+  ce:	01 c0       	rjmp	.+2      	; 0xd2 <i2c_read>
+
+000000d0 <i2c_readAck>:
+i2c_readAck:
+	ldi	r24,0x01
+  d0:	81 e0       	ldi	r24, 0x01	; 1
+
+000000d2 <i2c_read>:
+i2c_read:
+	ldi	r23,0x01	;data = 0x01
+  d2:	71 e0       	ldi	r23, 0x01	; 1
+
+000000d4 <i2c_read_bit>:
+i2c_read_bit:
+	sbi	SCL_DDR,SCL	;force SCL low
+  d4:	bb 9a       	sbi	0x17, 3	; 23
+	cbi	SDA_DDR,SDA	;release SDA (from previous ACK)
+  d6:	bc 98       	cbi	0x17, 4	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  d8:	be df       	rcall	.-132    	; 0x56 <i2c_delay_T2>
+	
+	cbi	SCL_DDR,SCL	;release SCL
+  da:	bb 98       	cbi	0x17, 3	; 23
+	rcall	i2c_delay_T2	;delay T/2
+  dc:	bc df       	rcall	.-136    	; 0x56 <i2c_delay_T2>
+
+000000de <i2c_read_stretch>:
+	
+i2c_read_stretch:
+    sbis SCL_IN, SCL        ;loop until SCL is high (allow slave to stretch SCL)
+  de:	b3 9b       	sbis	0x16, 3	; 22
+    rjmp	i2c_read_stretch
+  e0:	fe cf       	rjmp	.-4      	; 0xde <i2c_read_stretch>
+    	
+	clc			;clear carry flag
+  e2:	88 94       	clc
+	sbic	SDA_IN,SDA	;if SDA is high
+  e4:	b4 99       	sbic	0x16, 4	; 22
+	sec			;  set carry flag
+  e6:	08 94       	sec
+	
+	rol	r23		;store bit
+  e8:	77 1f       	adc	r23, r23
+	brcc	i2c_read_bit	;while receive register not full
+  ea:	a0 f7       	brcc	.-24     	; 0xd4 <i2c_read_bit>
+
+000000ec <i2c_put_ack>:
+	
+i2c_put_ack:
+	sbi	SCL_DDR,SCL	;force SCL low	
+  ec:	bb 9a       	sbi	0x17, 3	; 23
+	cpi	r24,1
+  ee:	81 30       	cpi	r24, 0x01	; 1
+	breq	i2c_put_ack_low	;if (ack=0)
+  f0:	11 f0       	breq	.+4      	; 0xf6 <i2c_put_ack_low>
+	cbi	SDA_DDR,SDA	;      release SDA
+  f2:	bc 98       	cbi	0x17, 4	; 23
+	rjmp	i2c_put_ack_high
+  f4:	01 c0       	rjmp	.+2      	; 0xf8 <i2c_put_ack_high>
+
+000000f6 <i2c_put_ack_low>:
+i2c_put_ack_low:                ;else
+	sbi	SDA_DDR,SDA	;      force SDA low
+  f6:	bc 9a       	sbi	0x17, 4	; 23
+
+000000f8 <i2c_put_ack_high>:
+i2c_put_ack_high:
+	rcall	i2c_delay_T2	;delay T/2
+  f8:	ae df       	rcall	.-164    	; 0x56 <i2c_delay_T2>
+	cbi	SCL_DDR,SCL	;release SCL
+  fa:	bb 98       	cbi	0x17, 3	; 23
+
+000000fc <i2c_put_ack_wait>:
+i2c_put_ack_wait:
+	sbis	SCL_IN,SCL	;wait SCL high
+  fc:	b3 9b       	sbis	0x16, 3	; 22
+	rjmp	i2c_put_ack_wait
+  fe:	fe cf       	rjmp	.-4      	; 0xfc <i2c_put_ack_wait>
+	rcall	i2c_delay_T2	;delay T/2
+ 100:	aa df       	rcall	.-172    	; 0x56 <i2c_delay_T2>
+	mov	r24,r23
+ 102:	87 2f       	mov	r24, r23
+	clr	r25
+ 104:	99 27       	eor	r25, r25
+	ret
+ 106:	08 95       	ret
+
+00000108 <_Z10DHT20_initv>:
+	_delay_ms(100); 
+#endif
+	
+	uint8_t status_word = 0;
+	
+	i2c_start(0x71);
+ 108:	81 e7       	ldi	r24, 0x71	; 113
+ 10a:	ae df       	rcall	.-164    	; 0x68 <i2c_start>
+	status_word = i2c_read(0);
+ 10c:	df df       	rcall	.-66     	; 0xcc <i2c_readNak>
+	i2c_stop();
+ 10e:	ba cf       	rjmp	.-140    	; 0x84 <i2c_stop>
+
+00000110 <_Z13DHT20_refleshv>:
+#endif
+}
+
+// 温度がマイナスの場合は面倒だから考慮しない
+SensorValue DHT20_reflesh()
+{
+ 110:	0f 93       	push	r16
+ 112:	1f 93       	push	r17
+ 114:	cf 93       	push	r28
+ 116:	df 93       	push	r29
+	// main側で10ms待つので、省略可能
+	_delay_ms(10);
+#endif
+	
+	// 計測開始コマンドをWrite
+	i2c_start(0x70);
+ 118:	80 e7       	ldi	r24, 0x70	; 112
+ 11a:	a6 df       	rcall	.-180    	; 0x68 <i2c_start>
+	i2c_write(0xAC);
+ 11c:	8c ea       	ldi	r24, 0xAC	; 172
+ 11e:	ba df       	rcall	.-140    	; 0x94 <i2c_write>
+	i2c_write(0x33);
+ 120:	83 e3       	ldi	r24, 0x33	; 51
+ 122:	b8 df       	rcall	.-144    	; 0x94 <i2c_write>
+	i2c_write(0x00);
+ 124:	80 e0       	ldi	r24, 0x00	; 0
+ 126:	b6 df       	rcall	.-148    	; 0x94 <i2c_write>
+	i2c_stop();
+ 128:	ad df       	rcall	.-166    	; 0x84 <i2c_stop>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 12a:	8f e1       	ldi	r24, 0x1F	; 31
+ 12c:	9e e4       	ldi	r25, 0x4E	; 78
+ 12e:	01 97       	sbiw	r24, 0x01	; 1
+ 130:	f1 f7       	brne	.-4      	; 0x12e <_Z13DHT20_refleshv+0x1e>
+ 132:	00 c0       	rjmp	.+0      	; 0x134 <_Z13DHT20_refleshv+0x24>
+ 134:	00 00       	nop
+	SensorValue ret;
+
+	uint8_t state;
+	uint8_t data[5];
+	
+	i2c_start(0x71);
+ 136:	81 e7       	ldi	r24, 0x71	; 113
+ 138:	97 df       	rcall	.-210    	; 0x68 <i2c_start>
+	state = i2c_read(1);
+ 13a:	ca df       	rcall	.-108    	; 0xd0 <i2c_readAck>
+	data[0] = i2c_read(1);
+ 13c:	c9 df       	rcall	.-110    	; 0xd0 <i2c_readAck>
+ 13e:	c8 2f       	mov	r28, r24
+	data[1] = i2c_read(1);
+ 140:	c7 df       	rcall	.-114    	; 0xd0 <i2c_readAck>
+	data[2] = i2c_read(1);
+ 142:	c6 df       	rcall	.-116    	; 0xd0 <i2c_readAck>
+ 144:	18 2f       	mov	r17, r24
+	data[3] = i2c_read(1);
+ 146:	c4 df       	rcall	.-120    	; 0xd0 <i2c_readAck>
+ 148:	08 2f       	mov	r16, r24
+	data[4] = i2c_read(1);
+ 14a:	c2 df       	rcall	.-124    	; 0xd0 <i2c_readAck>
+ 14c:	d8 2f       	mov	r29, r24
+	i2c_read(0);	// CRC 使わない
+ 14e:	be df       	rcall	.-132    	; 0xcc <i2c_readNak>
+	i2c_stop();
+ 150:	99 df       	rcall	.-206    	; 0x84 <i2c_stop>
+	
+	_humidity = ((uint32_t)data[0] << 1) | (uint32_t)((data[2] & 0x80) >> 7);
+	_temp = ((uint32_t)(data[2] & 0x0F) << 16) | ((uint32_t)data[3] << 8) | (uint32_t)(data[4]);
+	
+	// 10進の値に直す
+	_humidity = ((_humidity * 100) >> 9);	// 10進、整数
+ 152:	8c 2f       	mov	r24, r28
+ 154:	90 e0       	ldi	r25, 0x00	; 0
+ 156:	88 0f       	add	r24, r24
+ 158:	99 1f       	adc	r25, r25
+ 15a:	21 2f       	mov	r18, r17
+ 15c:	22 1f       	adc	r18, r18
+ 15e:	22 27       	eor	r18, r18
+ 160:	22 1f       	adc	r18, r18
+ 162:	82 2b       	or	r24, r18
+ 164:	64 e6       	ldi	r22, 0x64	; 100
+ 166:	70 e0       	ldi	r23, 0x00	; 0
+ 168:	8d d1       	rcall	.+794    	; 0x484 <__mulhi3>
+ 16a:	c9 2f       	mov	r28, r25
+ 16c:	c6 95       	lsr	r28
+	_temp = ((_temp * 2000) >> 20) - 500; // 10進、固定小数点（小数第1位まで含んで整数として扱う）
+ 16e:	8d 2f       	mov	r24, r29
+ 170:	90 e0       	ldi	r25, 0x00	; 0
+ 172:	a0 e0       	ldi	r26, 0x00	; 0
+ 174:	b0 e0       	ldi	r27, 0x00	; 0
+ 176:	90 2b       	or	r25, r16
+ 178:	1f 70       	andi	r17, 0x0F	; 15
+ 17a:	bc 01       	movw	r22, r24
+ 17c:	cd 01       	movw	r24, r26
+ 17e:	81 2b       	or	r24, r17
+ 180:	20 ed       	ldi	r18, 0xD0	; 208
+ 182:	37 e0       	ldi	r19, 0x07	; 7
+ 184:	40 e0       	ldi	r20, 0x00	; 0
+ 186:	50 e0       	ldi	r21, 0x00	; 0
+ 188:	8e d1       	rcall	.+796    	; 0x4a6 <__mulsi3>
+ 18a:	ab 01       	movw	r20, r22
+ 18c:	bc 01       	movw	r22, r24
+ 18e:	34 e1       	ldi	r19, 0x14	; 20
+ 190:	76 95       	lsr	r23
+ 192:	67 95       	ror	r22
+ 194:	57 95       	ror	r21
+ 196:	47 95       	ror	r20
+ 198:	3a 95       	dec	r19
+ 19a:	d1 f7       	brne	.-12     	; 0x190 <_Z13DHT20_refleshv+0x80>
+ 19c:	44 5f       	subi	r20, 0xF4	; 244
+ 19e:	51 40       	sbci	r21, 0x01	; 1
+ 1a0:	61 09       	sbc	r22, r1
+ 1a2:	71 09       	sbc	r23, r1
+	// 範囲外チェック
+	if (_humidity > 100) {
+		_humidity = 99;
+	}
+	
+	if (_temp > 1500) {
+ 1a4:	4d 3d       	cpi	r20, 0xDD	; 221
+ 1a6:	95 e0       	ldi	r25, 0x05	; 5
+ 1a8:	59 07       	cpc	r21, r25
+ 1aa:	61 05       	cpc	r22, r1
+ 1ac:	71 05       	cpc	r23, r1
+ 1ae:	20 f0       	brcs	.+8      	; 0x1b8 <_Z13DHT20_refleshv+0xa8>
+		_temp = 1499;
+ 1b0:	4b ed       	ldi	r20, 0xDB	; 219
+ 1b2:	55 e0       	ldi	r21, 0x05	; 5
+ 1b4:	60 e0       	ldi	r22, 0x00	; 0
+ 1b6:	70 e0       	ldi	r23, 0x00	; 0
+	//sprintf(buf, "%x %x", data[1], data[2]);
+	sprintf(buf, "%u", _temp);
+	lcd_puts(LCD_ST7032I_RAMADDR_ROW2, buf, true);
+#endif
+
+	return ret;
+ 1b8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ba:	8c 2f       	mov	r24, r28
+ 1bc:	64 2f       	mov	r22, r20
+ 1be:	75 2f       	mov	r23, r21
+ 1c0:	df 91       	pop	r29
+ 1c2:	cf 91       	pop	r28
+ 1c4:	1f 91       	pop	r17
+ 1c6:	0f 91       	pop	r16
+ 1c8:	08 95       	ret
+
+000001ca <_ZL22LCD7032i_write_commandh>:
+
+#include "i2cmaster.h"	// 938Byte
+#include "LCD_ST7032i.hpp"
+
+
+static void LCD7032i_write_command(const uint8_t data){
+ 1ca:	cf 93       	push	r28
+ 1cc:	c8 2f       	mov	r28, r24
+	i2c_start(ST7032I_ADDR_WR);
+ 1ce:	8c e7       	ldi	r24, 0x7C	; 124
+ 1d0:	4b df       	rcall	.-362    	; 0x68 <i2c_start>
+	i2c_write(CTRL_BYTE_CMD_LASTBYTE);
+ 1d2:	80 e8       	ldi	r24, 0x80	; 128
+ 1d4:	5f df       	rcall	.-322    	; 0x94 <i2c_write>
+	i2c_write(data);
+ 1d6:	8c 2f       	mov	r24, r28
+ 1d8:	5d df       	rcall	.-326    	; 0x94 <i2c_write>
+	i2c_stop();
+}
+ 1da:	cf 91       	pop	r28
+
+static void LCD7032i_write_command(const uint8_t data){
+	i2c_start(ST7032I_ADDR_WR);
+	i2c_write(CTRL_BYTE_CMD_LASTBYTE);
+	i2c_write(data);
+	i2c_stop();
+ 1dc:	53 cf       	rjmp	.-346    	; 0x84 <i2c_stop>
+
+000001de <_Z8lcd_putshPKcb>:
+	}
+
+	i2c_stop();
+}
+
+void lcd_puts(const uint8_t addr, const char* str, const bool isWriteFromTop){
+ 1de:	0f 93       	push	r16
+ 1e0:	1f 93       	push	r17
+ 1e2:	cf 93       	push	r28
+ 1e4:	df 93       	push	r29
+ 1e6:	c8 2f       	mov	r28, r24
+ 1e8:	8b 01       	movw	r16, r22
+ 1ea:	d4 2f       	mov	r29, r20
+}
+
+// 容量節約のためにinlineにしている。別にinlineにしなくていい
+static void inline LCD7032i_write_str(const uint8_t addr, const char* str, const bool isWriteFromTop){
+
+	i2c_start(ST7032I_ADDR_WR);
+ 1ec:	8c e7       	ldi	r24, 0x7C	; 124
+ 1ee:	3c df       	rcall	.-392    	; 0x68 <i2c_start>
+
+	// 行頭から書き込む場合は、先にDDRAMのアドレスを指定する
+	if (isWriteFromTop) {
+ 1f0:	dd 23       	and	r29, r29
+ 1f2:	49 f0       	breq	.+18     	; 0x206 <__DATA_REGION_LENGTH__+0x6>
+		i2c_write(CTRL_BYTE_CMD_LASTBYTE);
+ 1f4:	80 e8       	ldi	r24, 0x80	; 128
+ 1f6:	4e df       	rcall	.-356    	; 0x94 <i2c_write>
+		i2c_write(0x80 | addr);
+ 1f8:	8c 2f       	mov	r24, r28
+ 1fa:	80 68       	ori	r24, 0x80	; 128
+ 1fc:	4b df       	rcall	.-362    	; 0x94 <i2c_write>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1fe:	81 e2       	ldi	r24, 0x21	; 33
+ 200:	8a 95       	dec	r24
+ 202:	f1 f7       	brne	.-4      	; 0x200 <__DATA_REGION_LENGTH__>
+ 204:	00 00       	nop
+	
+		_delay_us(100);	// このdelayが必要（ないと■になる）
+	}
+
+	// データ書き込む
+	i2c_write(CTRL_BYTE_DDRAM);
+ 206:	80 e4       	ldi	r24, 0x40	; 64
+ 208:	45 df       	rcall	.-374    	; 0x94 <i2c_write>
+ 20a:	e8 01       	movw	r28, r16
+
+	while (*str){
+ 20c:	89 91       	ld	r24, Y+
+ 20e:	88 23       	and	r24, r24
+ 210:	11 f0       	breq	.+4      	; 0x216 <__DATA_REGION_LENGTH__+0x16>
+		// null終端文字は書き込まない（書き込むと空白として表示される）
+		if (*str != '\0'){
+			i2c_write(*str++);
+ 212:	40 df       	rcall	.-384    	; 0x94 <i2c_write>
+ 214:	fb cf       	rjmp	.-10     	; 0x20c <__DATA_REGION_LENGTH__+0xc>
+	i2c_stop();
+}
+
+void lcd_puts(const uint8_t addr, const char* str, const bool isWriteFromTop){
+	LCD7032i_write_str(addr, str, isWriteFromTop);
+}
+ 216:	df 91       	pop	r29
+ 218:	cf 91       	pop	r28
+ 21a:	1f 91       	pop	r17
+ 21c:	0f 91       	pop	r16
+		if (*str != '\0'){
+			i2c_write(*str++);
+		}
+	}
+
+	i2c_stop();
+ 21e:	32 cf       	rjmp	.-412    	; 0x84 <i2c_stop>
+
+00000220 <_Z8lcd_initv>:
+	_delay_us(30);
+}
+
+void lcd_init(){
+	// init I2C interface
+    i2c_init();                                
+ 220:	1e df       	rcall	.-452    	; 0x5e <i2c_init>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 222:	8f e0       	ldi	r24, 0x0F	; 15
+ 224:	97 e2       	ldi	r25, 0x27	; 39
+ 226:	01 97       	sbiw	r24, 0x01	; 1
+ 228:	f1 f7       	brne	.-4      	; 0x226 <_Z8lcd_initv+0x6>
+ 22a:	00 c0       	rjmp	.+0      	; 0x22c <_Z8lcd_initv+0xc>
+ 22c:	00 00       	nop
+
+	// LCD Init sequence
+	_delay_ms(40);	// > 40ms
+	
+	LCD7032i_write_command(0x38);
+ 22e:	88 e3       	ldi	r24, 0x38	; 56
+ 230:	cc df       	rcall	.-104    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 232:	9a e0       	ldi	r25, 0x0A	; 10
+ 234:	9a 95       	dec	r25
+ 236:	f1 f7       	brne	.-4      	; 0x234 <_Z8lcd_initv+0x14>
+	_delay_us_30();	// > 26.3us
+	
+	LCD7032i_write_command(0x39);
+ 238:	89 e3       	ldi	r24, 0x39	; 57
+ 23a:	c7 df       	rcall	.-114    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+ 23c:	8a e0       	ldi	r24, 0x0A	; 10
+ 23e:	8a 95       	dec	r24
+ 240:	f1 f7       	brne	.-4      	; 0x23e <_Z8lcd_initv+0x1e>
+	_delay_us_30();	// > 26.3us
+	
+	LCD7032i_write_command(0x14);
+ 242:	84 e1       	ldi	r24, 0x14	; 20
+ 244:	c2 df       	rcall	.-124    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+ 246:	9a e0       	ldi	r25, 0x0A	; 10
+ 248:	9a 95       	dec	r25
+ 24a:	f1 f7       	brne	.-4      	; 0x248 <_Z8lcd_initv+0x28>
+	_delay_us_30();	// > 26.3us
+	
+	// Note : 5V -> 0x73, 3.3V -> 0x70 （0x73ではちょっと画面が黒い）
+	LCD7032i_write_command(0x70);
+ 24c:	80 e7       	ldi	r24, 0x70	; 112
+ 24e:	bd df       	rcall	.-134    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+ 250:	8a e0       	ldi	r24, 0x0A	; 10
+ 252:	8a 95       	dec	r24
+ 254:	f1 f7       	brne	.-4      	; 0x252 <_Z8lcd_initv+0x32>
+	_delay_us_30();	// > 26.3us
+	
+	// NOTE : 5V -> 0x52, 3.3V -> 0x56
+	LCD7032i_write_command(0x56);	
+ 256:	86 e5       	ldi	r24, 0x56	; 86
+ 258:	b8 df       	rcall	.-144    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+ 25a:	9a e0       	ldi	r25, 0x0A	; 10
+ 25c:	9a 95       	dec	r25
+ 25e:	f1 f7       	brne	.-4      	; 0x25c <_Z8lcd_initv+0x3c>
+	_delay_us_30();	// > 26.3us
+	
+	LCD7032i_write_command(0x6C);
+ 260:	8c e6       	ldi	r24, 0x6C	; 108
+ 262:	b3 df       	rcall	.-154    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 264:	8f e4       	ldi	r24, 0x4F	; 79
+ 266:	93 ec       	ldi	r25, 0xC3	; 195
+ 268:	01 97       	sbiw	r24, 0x01	; 1
+ 26a:	f1 f7       	brne	.-4      	; 0x268 <__stack+0x9>
+ 26c:	00 c0       	rjmp	.+0      	; 0x26e <__stack+0xf>
+ 26e:	00 00       	nop
+	_delay_ms(200);	// > 200ms
+	
+	LCD7032i_write_command(0x38);
+ 270:	88 e3       	ldi	r24, 0x38	; 56
+ 272:	ab df       	rcall	.-170    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 274:	9a e0       	ldi	r25, 0x0A	; 10
+ 276:	9a 95       	dec	r25
+ 278:	f1 f7       	brne	.-4      	; 0x276 <__stack+0x17>
+	_delay_us_30();	// > 26.3us
+	
+	LCD7032i_write_command(0x0C);
+ 27a:	8c e0       	ldi	r24, 0x0C	; 12
+ 27c:	a6 df       	rcall	.-180    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+ 27e:	8a e0       	ldi	r24, 0x0A	; 10
+ 280:	8a 95       	dec	r24
+ 282:	f1 f7       	brne	.-4      	; 0x280 <__stack+0x21>
+	_delay_us_30();	// > 26.3us
+	
+	LCD7032i_write_command(0x01);
+ 284:	81 e0       	ldi	r24, 0x01	; 1
+ 286:	a1 df       	rcall	.-190    	; 0x1ca <_ZL22LCD7032i_write_commandh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 288:	83 ef       	ldi	r24, 0xF3	; 243
+ 28a:	91 e0       	ldi	r25, 0x01	; 1
+ 28c:	01 97       	sbiw	r24, 0x01	; 1
+ 28e:	f1 f7       	brne	.-4      	; 0x28c <__stack+0x2d>
+ 290:	00 c0       	rjmp	.+0      	; 0x292 <__stack+0x33>
+ 292:	00 00       	nop
+ 294:	08 95       	ret
+
+00000296 <__vector_5>:
+}
+
+#ifdef _USE_TIMER_ISR
+
+// 割り込みは、1MHz / 1024（タイマのプリスケーラ） / 256（TCNT0の最大カウント） ≒ 0.262sごとに生じる
+ISR(TIM0_OVF_vect){
+ 296:	1f 92       	push	r1
+ 298:	0f 92       	push	r0
+ 29a:	0f b6       	in	r0, 0x3f	; 63
+ 29c:	0f 92       	push	r0
+ 29e:	11 24       	eor	r1, r1
+ 2a0:	4f 92       	push	r4
+ 2a2:	5f 92       	push	r5
+ 2a4:	6f 92       	push	r6
+ 2a6:	7f 92       	push	r7
+ 2a8:	8f 92       	push	r8
+ 2aa:	9f 92       	push	r9
+ 2ac:	af 92       	push	r10
+ 2ae:	bf 92       	push	r11
+ 2b0:	cf 92       	push	r12
+ 2b2:	df 92       	push	r13
+ 2b4:	ef 92       	push	r14
+ 2b6:	ff 92       	push	r15
+ 2b8:	0f 93       	push	r16
+ 2ba:	1f 93       	push	r17
+ 2bc:	2f 93       	push	r18
+ 2be:	3f 93       	push	r19
+ 2c0:	4f 93       	push	r20
+ 2c2:	5f 93       	push	r21
+ 2c4:	6f 93       	push	r22
+ 2c6:	7f 93       	push	r23
+ 2c8:	8f 93       	push	r24
+ 2ca:	9f 93       	push	r25
+ 2cc:	af 93       	push	r26
+ 2ce:	bf 93       	push	r27
+ 2d0:	ef 93       	push	r30
+ 2d2:	ff 93       	push	r31
+ 2d4:	cf 93       	push	r28
+ 2d6:	df 93       	push	r29
+ 2d8:	cd b7       	in	r28, 0x3d	; 61
+ 2da:	de b7       	in	r29, 0x3e	; 62
+ 2dc:	2f 97       	sbiw	r28, 0x0f	; 15
+ 2de:	de bf       	out	0x3e, r29	; 62
+ 2e0:	cd bf       	out	0x3d, r28	; 61
+	// 他に割り込み来ないけど、一応disableしておく
+	cli();
+ 2e2:	f8 94       	cli
+	
+	timer_cnt++;
+ 2e4:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <__data_end>
+ 2e8:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <__data_end+0x1>
+ 2ec:	01 96       	adiw	r24, 0x01	; 1
+	
+	// 5sごとに測定する（5 / 0.262 ≒ 19）
+	if (timer_cnt > 19){
+ 2ee:	84 31       	cpi	r24, 0x14	; 20
+ 2f0:	91 05       	cpc	r25, r1
+ 2f2:	28 f4       	brcc	.+10     	; 0x2fe <__vector_5+0x68>
+// 割り込みは、1MHz / 1024（タイマのプリスケーラ） / 256（TCNT0の最大カウント） ≒ 0.262sごとに生じる
+ISR(TIM0_OVF_vect){
+	// 他に割り込み来ないけど、一応disableしておく
+	cli();
+	
+	timer_cnt++;
+ 2f4:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <__data_end+0x1>
+ 2f8:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <__data_end>
+ 2fc:	7d c0       	rjmp	.+250    	; 0x3f8 <__vector_5+0x162>
+	
+	// 5sごとに測定する（5 / 0.262 ≒ 19）
+	if (timer_cnt > 19){
+		timer_cnt = 0;
+ 2fe:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <__data_end+0x1>
+ 302:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__data_end>
+	DDRB |= (1 << 0);
+	PORTB |= (1 << 0);
+}
+
+static void inline LED_on(){
+	PORTB |= (1 << 0);
+ 306:	c0 9a       	sbi	0x18, 0	; 24
+static void inline LED_off(){
+	PORTB &= ~(1 << 0);
+}
+
+static inline SensorValue observe_temperature_and_humidity(){
+	return DHT20_reflesh();
+ 308:	03 df       	rcall	.-506    	; 0x110 <_Z13DHT20_refleshv>
+ 30a:	6b 01       	movw	r12, r22
+ 30c:	7c 01       	movw	r14, r24
+// 割り算を使わないように、×10した値を返す（固定小数点）
+// tempは小数第1位までを整数として表す
+// humidityは整数部分のみ
+static inline uint16_t calculate_discomfort_index(const uint16_t temp, const uint16_t humidity){
+	// 整数演算とするため、一旦×100000する
+	return (uint16_t)((81 * 100 * (uint32_t)temp + (1 * (uint32_t)humidity * (99 * (uint32_t) temp - 14300))) / 10000) + 463;
+ 30e:	2b 01       	movw	r4, r22
+ 310:	61 2c       	mov	r6, r1
+ 312:	71 2c       	mov	r7, r1
+ 314:	23 e6       	ldi	r18, 0x63	; 99
+ 316:	30 e0       	ldi	r19, 0x00	; 0
+ 318:	40 e0       	ldi	r20, 0x00	; 0
+ 31a:	50 e0       	ldi	r21, 0x00	; 0
+ 31c:	c3 01       	movw	r24, r6
+ 31e:	b2 01       	movw	r22, r4
+ 320:	c2 d0       	rcall	.+388    	; 0x4a6 <__mulsi3>
+ 322:	6c 5d       	subi	r22, 0xDC	; 220
+ 324:	77 43       	sbci	r23, 0x37	; 55
+ 326:	81 09       	sbc	r24, r1
+ 328:	91 09       	sbc	r25, r1
+ 32a:	97 01       	movw	r18, r14
+ 32c:	40 e0       	ldi	r20, 0x00	; 0
+ 32e:	50 e0       	ldi	r21, 0x00	; 0
+ 330:	ba d0       	rcall	.+372    	; 0x4a6 <__mulsi3>
+ 332:	4b 01       	movw	r8, r22
+ 334:	5c 01       	movw	r10, r24
+ 336:	24 ea       	ldi	r18, 0xA4	; 164
+ 338:	3f e1       	ldi	r19, 0x1F	; 31
+ 33a:	40 e0       	ldi	r20, 0x00	; 0
+ 33c:	50 e0       	ldi	r21, 0x00	; 0
+ 33e:	c3 01       	movw	r24, r6
+ 340:	b2 01       	movw	r22, r4
+ 342:	b1 d0       	rcall	.+354    	; 0x4a6 <__mulsi3>
+ 344:	68 0d       	add	r22, r8
+ 346:	79 1d       	adc	r23, r9
+ 348:	8a 1d       	adc	r24, r10
+ 34a:	9b 1d       	adc	r25, r11
+ 34c:	20 e1       	ldi	r18, 0x10	; 16
+ 34e:	37 e2       	ldi	r19, 0x27	; 39
+ 350:	40 e0       	ldi	r20, 0x00	; 0
+ 352:	50 e0       	ldi	r21, 0x00	; 0
+ 354:	c1 d0       	rcall	.+386    	; 0x4d8 <__udivmodsi4>
+ 356:	59 01       	movw	r10, r18
+ 358:	81 e3       	ldi	r24, 0x31	; 49
+ 35a:	a8 1a       	sub	r10, r24
+ 35c:	8e ef       	ldi	r24, 0xFE	; 254
+ 35e:	b8 0a       	sbc	r11, r24
+}
+
+static inline void display_temperature_humidity_and_discomfort_index(const uint8_t temp, const uint8_t humidity, const uint16_t di){
+
+	char temp_buf[6];
+	itoa(temp, temp_buf, 10);
+ 360:	c6 01       	movw	r24, r12
+ 362:	99 27       	eor	r25, r25
+ 364:	4a e0       	ldi	r20, 0x0A	; 10
+ 366:	50 e0       	ldi	r21, 0x00	; 0
+ 368:	8e 01       	movw	r16, r28
+ 36a:	0f 5f       	subi	r16, 0xFF	; 255
+ 36c:	1f 4f       	sbci	r17, 0xFF	; 255
+ 36e:	b8 01       	movw	r22, r16
+ 370:	d5 d0       	rcall	.+426    	; 0x51c <itoa>
+	
+	// itoaは左詰め等の指定ができないので、strlenで調整
+	// 温度が1桁台の場合のみ考慮
+	// 本当はsprintfで整形したほうがいい。それか、自前itoa
+	if (strlen(temp_buf) == 2){
+ 372:	f8 01       	movw	r30, r16
+ 374:	01 90       	ld	r0, Z+
+ 376:	00 20       	and	r0, r0
+ 378:	e9 f7       	brne	.-6      	; 0x374 <__vector_5+0xde>
+ 37a:	cf 01       	movw	r24, r30
+ 37c:	03 97       	sbiw	r24, 0x03	; 3
+ 37e:	80 17       	cp	r24, r16
+ 380:	91 07       	cpc	r25, r17
+ 382:	31 f4       	brne	.+12     	; 0x390 <__vector_5+0xfa>
+		temp_buf[2] = temp_buf[1];
+ 384:	8a 81       	ldd	r24, Y+2	; 0x02
+ 386:	8b 83       	std	Y+3, r24	; 0x03
+		temp_buf[1] = temp_buf[0];
+ 388:	89 81       	ldd	r24, Y+1	; 0x01
+ 38a:	8a 83       	std	Y+2, r24	; 0x02
+		temp_buf[0] = '0';
+ 38c:	80 e3       	ldi	r24, 0x30	; 48
+ 38e:	89 83       	std	Y+1, r24	; 0x01
+	}
+	
+	temp_buf[3] = temp_buf[2];
+ 390:	8b 81       	ldd	r24, Y+3	; 0x03
+ 392:	8c 83       	std	Y+4, r24	; 0x04
+	temp_buf[2] = '.';
+ 394:	8e e2       	ldi	r24, 0x2E	; 46
+ 396:	98 2e       	mov	r9, r24
+ 398:	9b 82       	std	Y+3, r9	; 0x03
+	temp_buf[4] = 0b11011111;	// °の記号
+ 39a:	8f ed       	ldi	r24, 0xDF	; 223
+ 39c:	8d 83       	std	Y+5, r24	; 0x05
+	temp_buf[5] = '\0';			// lcd_putsは終端文字は表示しない
+ 39e:	1e 82       	std	Y+6, r1	; 0x06
+	
+	lcd_puts(LCD_ST7032I_RAMADDR_ROW1, temp_buf, true);
+ 3a0:	41 e0       	ldi	r20, 0x01	; 1
+ 3a2:	b8 01       	movw	r22, r16
+ 3a4:	80 e0       	ldi	r24, 0x00	; 0
+ 3a6:	1b df       	rcall	.-458    	; 0x1de <_Z8lcd_putshPKcb>
+	
+	char humidity_buf[4];
+	itoa(humidity, humidity_buf, 10);
+ 3a8:	4a e0       	ldi	r20, 0x0A	; 10
+ 3aa:	50 e0       	ldi	r21, 0x00	; 0
+ 3ac:	be 01       	movw	r22, r28
+ 3ae:	64 5f       	subi	r22, 0xF4	; 244
+ 3b0:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3b2:	8e 2d       	mov	r24, r14
+ 3b4:	90 e0       	ldi	r25, 0x00	; 0
+ 3b6:	b2 d0       	rcall	.+356    	; 0x51c <itoa>
+	humidity_buf[2] = '%';
+ 3b8:	85 e2       	ldi	r24, 0x25	; 37
+ 3ba:	8e 87       	std	Y+14, r24	; 0x0e
+	humidity_buf[3] = '\0';
+ 3bc:	1f 86       	std	Y+15, r1	; 0x0f
+		
+	lcd_puts(LCD_ST7032I_RAMADDR_ROW1, humidity_buf, false);
+ 3be:	40 e0       	ldi	r20, 0x00	; 0
+ 3c0:	be 01       	movw	r22, r28
+ 3c2:	64 5f       	subi	r22, 0xF4	; 244
+ 3c4:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3c6:	80 e0       	ldi	r24, 0x00	; 0
+ 3c8:	0a df       	rcall	.-492    	; 0x1de <_Z8lcd_putshPKcb>
+	
+	char di_buf[5];
+	itoa(di, di_buf, 10);
+ 3ca:	4a e0       	ldi	r20, 0x0A	; 10
+ 3cc:	50 e0       	ldi	r21, 0x00	; 0
+ 3ce:	be 01       	movw	r22, r28
+ 3d0:	69 5f       	subi	r22, 0xF9	; 249
+ 3d2:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3d4:	c5 01       	movw	r24, r10
+ 3d6:	a2 d0       	rcall	.+324    	; 0x51c <itoa>
+	
+	di_buf[3] = di_buf[2];
+ 3d8:	89 85       	ldd	r24, Y+9	; 0x09
+ 3da:	8a 87       	std	Y+10, r24	; 0x0a
+	di_buf[2] = '.';
+ 3dc:	99 86       	std	Y+9, r9	; 0x09
+	di_buf[4] = '\0';
+ 3de:	1b 86       	std	Y+11, r1	; 0x0b
+	
+	lcd_puts(LCD_ST7032I_RAMADDR_ROW2, "DI:", true);
+ 3e0:	41 e0       	ldi	r20, 0x01	; 1
+ 3e2:	60 e6       	ldi	r22, 0x60	; 96
+ 3e4:	70 e0       	ldi	r23, 0x00	; 0
+ 3e6:	80 e4       	ldi	r24, 0x40	; 64
+ 3e8:	fa de       	rcall	.-524    	; 0x1de <_Z8lcd_putshPKcb>
+	lcd_puts(LCD_ST7032I_RAMADDR_ROW2, di_buf, false);
+ 3ea:	40 e0       	ldi	r20, 0x00	; 0
+ 3ec:	be 01       	movw	r22, r28
+ 3ee:	69 5f       	subi	r22, 0xF9	; 249
+ 3f0:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3f2:	80 e4       	ldi	r24, 0x40	; 64
+ 3f4:	f4 de       	rcall	.-536    	; 0x1de <_Z8lcd_putshPKcb>
+static void inline LED_on(){
+	PORTB |= (1 << 0);
+}
+
+static void inline LED_off(){
+	PORTB &= ~(1 << 0);
+ 3f6:	c0 98       	cbi	0x18, 0	; 24
+		display_temperature_humidity_and_discomfort_index(sensor_val.temperature, sensor_val.humidity, di);
+		
+		LED_off();
+	}
+	
+	sei();
+ 3f8:	78 94       	sei
+}
+ 3fa:	2f 96       	adiw	r28, 0x0f	; 15
+ 3fc:	0f b6       	in	r0, 0x3f	; 63
+ 3fe:	f8 94       	cli
+ 400:	de bf       	out	0x3e, r29	; 62
+ 402:	0f be       	out	0x3f, r0	; 63
+ 404:	cd bf       	out	0x3d, r28	; 61
+ 406:	df 91       	pop	r29
+ 408:	cf 91       	pop	r28
+ 40a:	ff 91       	pop	r31
+ 40c:	ef 91       	pop	r30
+ 40e:	bf 91       	pop	r27
+ 410:	af 91       	pop	r26
+ 412:	9f 91       	pop	r25
+ 414:	8f 91       	pop	r24
+ 416:	7f 91       	pop	r23
+ 418:	6f 91       	pop	r22
+ 41a:	5f 91       	pop	r21
+ 41c:	4f 91       	pop	r20
+ 41e:	3f 91       	pop	r19
+ 420:	2f 91       	pop	r18
+ 422:	1f 91       	pop	r17
+ 424:	0f 91       	pop	r16
+ 426:	ff 90       	pop	r15
+ 428:	ef 90       	pop	r14
+ 42a:	df 90       	pop	r13
+ 42c:	cf 90       	pop	r12
+ 42e:	bf 90       	pop	r11
+ 430:	af 90       	pop	r10
+ 432:	9f 90       	pop	r9
+ 434:	8f 90       	pop	r8
+ 436:	7f 90       	pop	r7
+ 438:	6f 90       	pop	r6
+ 43a:	5f 90       	pop	r5
+ 43c:	4f 90       	pop	r4
+ 43e:	0f 90       	pop	r0
+ 440:	0f be       	out	0x3f, r0	; 63
+ 442:	0f 90       	pop	r0
+ 444:	1f 90       	pop	r1
+ 446:	18 95       	reti
+
+00000448 <main>:
+#endif
+
+int main(void)
+{
+    // SCL, SDA、LEDポートはinitで上書きされる。が、とりあえず最初は全入力全プルアップ
+	DDRB = 0x00;
+ 448:	17 ba       	out	0x17, r1	; 23
+	PORTB = 0x3F;
+ 44a:	8f e3       	ldi	r24, 0x3F	; 63
+ 44c:	88 bb       	out	0x18, r24	; 24
+		
+	ACSR &= ~(1 << ACD);	// アナログ・コンパレータを非アクティブ（電力消費軽減）
+ 44e:	47 98       	cbi	0x08, 7	; 8
+	
+	PRR = (1 << PRTIM1) | (1 << PRUSI) | (1 << PRADC);	// Timer1, USI, ADCを非アクティブ
+ 450:	8b e0       	ldi	r24, 0x0B	; 11
+ 452:	80 bd       	out	0x20, r24	; 32
+	static uint16_t timer_cnt = 0;
+#endif
+
+// 1回ずつしか呼ばれないのでinline化
+static void inline LED_init(){
+	DDRB |= (1 << 0);
+ 454:	b8 9a       	sbi	0x17, 0	; 23
+	PORTB |= (1 << 0);
+ 456:	c0 9a       	sbi	0x18, 0	; 24
+	
+	PRR = (1 << PRTIM1) | (1 << PRUSI) | (1 << PRADC);	// Timer1, USI, ADCを非アクティブ
+	
+	// 各種初期化
+	LED_init();
+	lcd_init();
+ 458:	e3 de       	rcall	.-570    	; 0x220 <_Z8lcd_initv>
+	DHT20_init();
+ 45a:	56 de       	rcall	.-852    	; 0x108 <_Z10DHT20_initv>
+	
+	sei();
+}
+
+static void init_timer(){
+	timer_cnt = 0;
+ 45c:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <__data_end+0x1>
+ 460:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__data_end>
+	
+	TCCR0A	= 0x00;			// Normalモード、コンペア出力なし
+ 464:	1a bc       	out	0x2a, r1	; 42
+	TCCR0B	= 0b00000101;	// 1024分周（1MHz / 1024 ≒ 1kHz）
+ 466:	85 e0       	ldi	r24, 0x05	; 5
+ 468:	83 bf       	out	0x33, r24	; 51
+	TIMSK	= (1 << TOIE0);	// Enable Overflow Interrupt
+ 46a:	82 e0       	ldi	r24, 0x02	; 2
+ 46c:	89 bf       	out	0x39, r24	; 57
+	DHT20_init();
+	
+	// 本当は割り込みを使いたいが、使うと+200Bくらいされ、1kBを超えてしまうためdisable
+#ifdef _USE_TIMER_ISR
+	init_timer();
+	sei();	
+ 46e:	78 94       	sei
+	
+	// IdleよりPower-downのほうが省電力だが、どちらにしろLCDが1mAくらい、温度センサーが10mAくらい消費するため、Idleでよしとした。
+	// Power-downはWDTかINT割り込みが必要だが、IdleならTimerで起きるので扱いやすいし
+	set_sleep_mode(SLEEP_MODE_IDLE);
+ 470:	85 b7       	in	r24, 0x35	; 53
+ 472:	87 7e       	andi	r24, 0xE7	; 231
+ 474:	85 bf       	out	0x35, r24	; 53
+	
+	while (1)
+	{
+		// Timer割り込みを使う場合、メインループではIdleモードに落とす
+		sleep_mode();
+ 476:	85 b7       	in	r24, 0x35	; 53
+ 478:	80 62       	ori	r24, 0x20	; 32
+ 47a:	85 bf       	out	0x35, r24	; 53
+ 47c:	88 95       	sleep
+ 47e:	85 b7       	in	r24, 0x35	; 53
+ 480:	8f 7d       	andi	r24, 0xDF	; 223
+ 482:	f8 cf       	rjmp	.-16     	; 0x474 <main+0x2c>
+
+00000484 <__mulhi3>:
+ 484:	00 24       	eor	r0, r0
+ 486:	55 27       	eor	r21, r21
+ 488:	04 c0       	rjmp	.+8      	; 0x492 <__mulhi3+0xe>
+ 48a:	08 0e       	add	r0, r24
+ 48c:	59 1f       	adc	r21, r25
+ 48e:	88 0f       	add	r24, r24
+ 490:	99 1f       	adc	r25, r25
+ 492:	00 97       	sbiw	r24, 0x00	; 0
+ 494:	29 f0       	breq	.+10     	; 0x4a0 <__mulhi3+0x1c>
+ 496:	76 95       	lsr	r23
+ 498:	67 95       	ror	r22
+ 49a:	b8 f3       	brcs	.-18     	; 0x48a <__mulhi3+0x6>
+ 49c:	71 05       	cpc	r23, r1
+ 49e:	b9 f7       	brne	.-18     	; 0x48e <__mulhi3+0xa>
+ 4a0:	80 2d       	mov	r24, r0
+ 4a2:	95 2f       	mov	r25, r21
+ 4a4:	08 95       	ret
+
+000004a6 <__mulsi3>:
+ 4a6:	ee 27       	eor	r30, r30
+ 4a8:	ff 27       	eor	r31, r31
+
+000004aa <__mulsi3_helper>:
+ 4aa:	aa 27       	eor	r26, r26
+ 4ac:	bb 27       	eor	r27, r27
+ 4ae:	08 c0       	rjmp	.+16     	; 0x4c0 <__mulsi3_helper+0x16>
+ 4b0:	a2 0f       	add	r26, r18
+ 4b2:	b3 1f       	adc	r27, r19
+ 4b4:	e4 1f       	adc	r30, r20
+ 4b6:	f5 1f       	adc	r31, r21
+ 4b8:	22 0f       	add	r18, r18
+ 4ba:	33 1f       	adc	r19, r19
+ 4bc:	44 1f       	adc	r20, r20
+ 4be:	55 1f       	adc	r21, r21
+ 4c0:	96 95       	lsr	r25
+ 4c2:	87 95       	ror	r24
+ 4c4:	77 95       	ror	r23
+ 4c6:	67 95       	ror	r22
+ 4c8:	98 f3       	brcs	.-26     	; 0x4b0 <__mulsi3_helper+0x6>
+ 4ca:	70 40       	sbci	r23, 0x00	; 0
+ 4cc:	a9 f7       	brne	.-22     	; 0x4b8 <__mulsi3_helper+0xe>
+ 4ce:	00 97       	sbiw	r24, 0x00	; 0
+ 4d0:	99 f7       	brne	.-26     	; 0x4b8 <__mulsi3_helper+0xe>
+ 4d2:	bd 01       	movw	r22, r26
+ 4d4:	cf 01       	movw	r24, r30
+ 4d6:	08 95       	ret
+
+000004d8 <__udivmodsi4>:
+ 4d8:	a1 e2       	ldi	r26, 0x21	; 33
+ 4da:	1a 2e       	mov	r1, r26
+ 4dc:	aa 1b       	sub	r26, r26
+ 4de:	bb 1b       	sub	r27, r27
+ 4e0:	fd 01       	movw	r30, r26
+ 4e2:	0d c0       	rjmp	.+26     	; 0x4fe <__udivmodsi4_ep>
+
+000004e4 <__udivmodsi4_loop>:
+ 4e4:	aa 1f       	adc	r26, r26
+ 4e6:	bb 1f       	adc	r27, r27
+ 4e8:	ee 1f       	adc	r30, r30
+ 4ea:	ff 1f       	adc	r31, r31
+ 4ec:	a2 17       	cp	r26, r18
+ 4ee:	b3 07       	cpc	r27, r19
+ 4f0:	e4 07       	cpc	r30, r20
+ 4f2:	f5 07       	cpc	r31, r21
+ 4f4:	20 f0       	brcs	.+8      	; 0x4fe <__udivmodsi4_ep>
+ 4f6:	a2 1b       	sub	r26, r18
+ 4f8:	b3 0b       	sbc	r27, r19
+ 4fa:	e4 0b       	sbc	r30, r20
+ 4fc:	f5 0b       	sbc	r31, r21
+
+000004fe <__udivmodsi4_ep>:
+ 4fe:	66 1f       	adc	r22, r22
+ 500:	77 1f       	adc	r23, r23
+ 502:	88 1f       	adc	r24, r24
+ 504:	99 1f       	adc	r25, r25
+ 506:	1a 94       	dec	r1
+ 508:	69 f7       	brne	.-38     	; 0x4e4 <__udivmodsi4_loop>
+ 50a:	60 95       	com	r22
+ 50c:	70 95       	com	r23
+ 50e:	80 95       	com	r24
+ 510:	90 95       	com	r25
+ 512:	9b 01       	movw	r18, r22
+ 514:	ac 01       	movw	r20, r24
+ 516:	bd 01       	movw	r22, r26
+ 518:	cf 01       	movw	r24, r30
+ 51a:	08 95       	ret
+
+0000051c <itoa>:
+ 51c:	45 32       	cpi	r20, 0x25	; 37
+ 51e:	51 05       	cpc	r21, r1
+ 520:	18 f4       	brcc	.+6      	; 0x528 <itoa+0xc>
+ 522:	42 30       	cpi	r20, 0x02	; 2
+ 524:	08 f0       	brcs	.+2      	; 0x528 <itoa+0xc>
+ 526:	04 c0       	rjmp	.+8      	; 0x530 <__itoa_ncheck>
+ 528:	fb 01       	movw	r30, r22
+ 52a:	10 82       	st	Z, r1
+ 52c:	cb 01       	movw	r24, r22
+ 52e:	08 95       	ret
+
+00000530 <__itoa_ncheck>:
+ 530:	bb 27       	eor	r27, r27
+ 532:	4a 30       	cpi	r20, 0x0A	; 10
+ 534:	31 f4       	brne	.+12     	; 0x542 <__itoa_ncheck+0x12>
+ 536:	99 23       	and	r25, r25
+ 538:	22 f4       	brpl	.+8      	; 0x542 <__itoa_ncheck+0x12>
+ 53a:	bd e2       	ldi	r27, 0x2D	; 45
+ 53c:	90 95       	com	r25
+ 53e:	81 95       	neg	r24
+ 540:	9f 4f       	sbci	r25, 0xFF	; 255
+ 542:	01 c0       	rjmp	.+2      	; 0x546 <__utoa_common>
+
+00000544 <__utoa_ncheck>:
+ 544:	bb 27       	eor	r27, r27
+
+00000546 <__utoa_common>:
+ 546:	fb 01       	movw	r30, r22
+ 548:	55 27       	eor	r21, r21
+ 54a:	aa 27       	eor	r26, r26
+ 54c:	88 0f       	add	r24, r24
+ 54e:	99 1f       	adc	r25, r25
+ 550:	aa 1f       	adc	r26, r26
+ 552:	a4 17       	cp	r26, r20
+ 554:	10 f0       	brcs	.+4      	; 0x55a <__utoa_common+0x14>
+ 556:	a4 1b       	sub	r26, r20
+ 558:	83 95       	inc	r24
+ 55a:	50 51       	subi	r21, 0x10	; 16
+ 55c:	b9 f7       	brne	.-18     	; 0x54c <__utoa_common+0x6>
+ 55e:	a0 5d       	subi	r26, 0xD0	; 208
+ 560:	aa 33       	cpi	r26, 0x3A	; 58
+ 562:	08 f0       	brcs	.+2      	; 0x566 <__utoa_common+0x20>
+ 564:	a9 5d       	subi	r26, 0xD9	; 217
+ 566:	a1 93       	st	Z+, r26
+ 568:	00 97       	sbiw	r24, 0x00	; 0
+ 56a:	79 f7       	brne	.-34     	; 0x54a <__utoa_common+0x4>
+ 56c:	b1 11       	cpse	r27, r1
+ 56e:	b1 93       	st	Z+, r27
+ 570:	11 92       	st	Z+, r1
+ 572:	cb 01       	movw	r24, r22
+ 574:	00 c0       	rjmp	.+0      	; 0x576 <strrev>
+
+00000576 <strrev>:
+ 576:	dc 01       	movw	r26, r24
+ 578:	fc 01       	movw	r30, r24
+ 57a:	67 2f       	mov	r22, r23
+ 57c:	71 91       	ld	r23, Z+
+ 57e:	77 23       	and	r23, r23
+ 580:	e1 f7       	brne	.-8      	; 0x57a <strrev+0x4>
+ 582:	32 97       	sbiw	r30, 0x02	; 2
+ 584:	04 c0       	rjmp	.+8      	; 0x58e <strrev+0x18>
+ 586:	7c 91       	ld	r23, X
+ 588:	6d 93       	st	X+, r22
+ 58a:	70 83       	st	Z, r23
+ 58c:	62 91       	ld	r22, -Z
+ 58e:	ae 17       	cp	r26, r30
+ 590:	bf 07       	cpc	r27, r31
+ 592:	c8 f3       	brcs	.-14     	; 0x586 <strrev+0x10>
+ 594:	08 95       	ret
+
+00000596 <_exit>:
+ 596:	f8 94       	cli
+
+00000598 <__stop_program>:
+ 598:	ff cf       	rjmp	.-2      	; 0x598 <__stop_program>
